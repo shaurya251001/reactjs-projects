@@ -32,6 +32,8 @@ export class Todoitem extends Component {
 }
 Todoitem.propTypes = {
   todos: PropTypes.array.isRequired,
+  markComplete: PropTypes.func.isRequired,
+  delTodo: PropTypes.func.isRequired,
 };
 const btnStyle = {
   background: "#ff0000",
