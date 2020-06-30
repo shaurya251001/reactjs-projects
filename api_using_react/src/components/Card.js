@@ -6,6 +6,7 @@ export default function Card(props) {
       <div className="card">
         <div className="card-image">
           <img src={props.img} />
+          {console.log(props.img)}
           <span className="card-title">{props.title}</span>
         </div>
         <div className="card-Namecontent">
