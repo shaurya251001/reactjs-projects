@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Input from "./components/Input";
 import Card from "./components/Card";
+import Loader from "./components/Loader";
 
 class App extends React.Component {
   constructor() {
@@ -9,6 +10,7 @@ class App extends React.Component {
     this.state = {
       input: "",
       data: [],
+      isLoading: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.fetchMethod = this.fetchMethod.bind(this);
@@ -21,6 +23,9 @@ class App extends React.Component {
   }
 
   fetchMethod(e) {
+    this.setState({
+      isLoading: true,
+    });
     e.preventDefault();
     console.log("hello");
     const APP_ID = "decaff6f";
@@ -33,6 +38,9 @@ class App extends React.Component {
         return res.json();
       })
       .then((data) => {
+        this.setState({
+          isLoading: false,
+        });
         const newA = data.hits.map(function (hit) {
           return (
             <Card
@@ -53,6 +61,9 @@ class App extends React.Component {
     return (
       <div className="row">
         <Input onchange={this.handleChange} onclick={this.fetchMethod} />
+        {console.log(this.state.isLoading)}
+        <Loader condition={this.state.isLoading} />
+
         {this.state.data}
       </div>
     );
