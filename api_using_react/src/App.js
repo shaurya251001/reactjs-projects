@@ -10,13 +10,18 @@ class App extends React.Component {
       input: "",
       data: [],
     };
+    this.handleChange = this.handleChange.bind(this);
   }
-
-  componentDidMount() {
+  handleChange(e) {
+    this.setState({
+      input: e.target.value,
+    });
+  }
+  componentDidUpdate() {
     const APP_ID = "decaff6f";
     const APP_KEY = "23a4322e4bc2db26f6ba1be425ad8d75";
     fetch(
-      `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free`
+      `https://api.edamam.com/search?q=${this.state.input}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free`
     )
       .then((res) => {
         return res.json();
@@ -41,7 +46,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="row">
-        <Input />
+        <Input onchange={this.handleChange} />
         {this.state.data}
       </div>
     );
