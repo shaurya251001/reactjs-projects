@@ -11,15 +11,21 @@ class App extends React.Component {
       data: [],
     };
     this.handleChange = this.handleChange.bind(this);
+    this.fetchMethod = this.fetchMethod.bind(this);
   }
   handleChange(e) {
+    console.log(e.target.value);
     this.setState({
       input: e.target.value,
     });
   }
-  componentDidUpdate() {
+
+  fetchMethod(e) {
+    e.preventDefault();
+    console.log("hello");
     const APP_ID = "decaff6f";
     const APP_KEY = "23a4322e4bc2db26f6ba1be425ad8d75";
+    console.log(this.state.input);
     fetch(
       `https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=${this.state.input}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free`
     )
@@ -46,7 +52,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="row">
-        <Input onchange={this.handleChange} />
+        <Input onchange={this.handleChange} onclick={this.fetchMethod} />
         {this.state.data}
       </div>
     );
