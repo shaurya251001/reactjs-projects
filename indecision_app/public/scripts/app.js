@@ -4,37 +4,51 @@ console.log("App.js is running!");
 
 //JSX JS XML
 // var template = <p>This is JSX from app.js</p>;
+var app = {
+  title: "Indecision App",
+  subTitle: "why"
+};
 var template = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    "Shaurya"
+    app.title
   ),
   React.createElement(
     "p",
     null,
-    "This is someting"
+    app.subTitle
   )
 );
+var user = {
+  name: "Shaurya",
+  age: 18,
+  loc: "jablpur"
+};
+var username = "xyz";
+var age = 56;
+var loc = "jabalpur";
 var templateTwo = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    "Shaurya MARWAH"
+    user.name
   ),
   React.createElement(
     "p",
     null,
-    "Age:18"
+    "Age:",
+    user.age
   ),
   React.createElement(
     "p",
     null,
-    "Loc:Jabalpur"
+    "Loc:",
+    user.loc
   )
 );
-ReactDOM.render(templateTwo, document.querySelector(".app"));
+ReactDOM.render(template, document.querySelector(".app"));
