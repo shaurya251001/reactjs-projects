@@ -28,38 +28,39 @@ var template = React.createElement(
     app.options.length > 0 ? "Here are your options" : "No options exist"
   )
 );
-var user = {
-  name: "",
-  age: 18,
-  loc: "jb"
+var count = 0;
+var addOne = function addOne() {
+  console.log("Add");
 };
-var username = "xyz";
-var age = 56;
-var loc = "jabalpur";
-function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      "p",
-      null,
-      location
-    );
-  }
-}
+var minusOne = function minusOne() {
+  console.log("Minus");
+};
+var resetOne = function resetOne() {
+  console.log("Reset");
+};
 var templateTwo = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    user.name ? user.name : "Anonymous"
+    "Count:",
+    count
   ),
-  user.age && user.age >= 18 && React.createElement(
-    "p",
-    null,
-    "Age:",
-    user.age
+  React.createElement(
+    "button",
+    { onClick: addOne },
+    "+1"
   ),
-  getLocation(user.loc)
-) //if{getLocation} turns out undefined nothing is printed to the screen
-;
-ReactDOM.render(template, document.querySelector(".app"));
+  React.createElement(
+    "button",
+    { onClick: minusOne },
+    "-1"
+  ),
+  React.createElement(
+    "button",
+    { onClick: resetOne },
+    "Reset"
+  )
+);
+ReactDOM.render(templateTwo, document.querySelector(".app"));

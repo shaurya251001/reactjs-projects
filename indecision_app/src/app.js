@@ -16,24 +16,22 @@ const template = (
     </p>
   </div>
 );
-const user = {
-  name: "",
-  age: 18,
-  loc: "jb",
+let count = 0;
+const addOne = () => {
+  console.log("Add");
 };
-const username = "xyz";
-const age = 56;
-const loc = "jabalpur";
-function getLocation(location) {
-  if (location) {
-    return <p>{location}</p>;
-  }
-}
+const minusOne = () => {
+  console.log("Minus");
+};
+const resetOne = () => {
+  console.log("Reset");
+};
 const templateTwo = (
   <div>
-    <h1>{user.name ? user.name : "Anonymous"}</h1>
-    {user.age && user.age >= 18 && <p>Age:{user.age}</p>}
-    {getLocation(user.loc)}
-  </div> //if{getLocation} turns out undefined nothing is printed to the screen
+    <h1>Count:{count}</h1>
+    <button onClick={addOne}>+1</button>
+    <button onClick={minusOne}>-1</button>
+    <button onClick={resetOne}>Reset</button>
+  </div>
 );
-ReactDOM.render(template, document.querySelector(".app"));
+ReactDOM.render(templateTwo, document.querySelector(".app"));
