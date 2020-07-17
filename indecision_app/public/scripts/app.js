@@ -6,7 +6,8 @@ console.log("App.js is running!");
 // var template = <p>This is JSX from app.js</p>;
 var app = {
   title: "Indecision App",
-  subTitle: "why"
+  subTitle: "je",
+  options: ["One", "Two"]
 };
 var template = React.createElement(
   "div",
@@ -16,39 +17,49 @@ var template = React.createElement(
     null,
     app.title
   ),
-  React.createElement(
+  app.subTitle && React.createElement(
     "p",
     null,
     app.subTitle
+  ),
+  React.createElement(
+    "p",
+    null,
+    app.options.length > 0 ? "Here are your options" : "No options exist"
   )
 );
 var user = {
-  name: "Shaurya",
+  name: "",
   age: 18,
-  loc: "jablpur"
+  loc: "jb"
 };
 var username = "xyz";
 var age = 56;
 var loc = "jabalpur";
+function getLocation(location) {
+  if (location) {
+    return React.createElement(
+      "p",
+      null,
+      location
+    );
+  }
+}
 var templateTwo = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    user.name
+    user.name ? user.name : "Anonymous"
   ),
-  React.createElement(
+  user.age && user.age >= 18 && React.createElement(
     "p",
     null,
     "Age:",
     user.age
   ),
-  React.createElement(
-    "p",
-    null,
-    "Loc:",
-    user.loc
-  )
-);
+  getLocation(user.loc)
+) //if{getLocation} turns out undefined nothing is printed to the screen
+;
 ReactDOM.render(template, document.querySelector(".app"));
