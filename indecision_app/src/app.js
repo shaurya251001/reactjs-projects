@@ -2,12 +2,12 @@ console.log("App.js is running!");
 
 //JSX JS XML
 // var template = <p>This is JSX from app.js</p>;
-var app = {
+const app = {
   title: "Indecision App",
   subTitle: "je",
   options: ["One", "Two"],
 };
-var template = (
+const template = (
   <div>
     <h1>{app.title}</h1>
     {app.subTitle && <p>{app.subTitle}</p>}
@@ -16,20 +16,20 @@ var template = (
     </p>
   </div>
 );
-var user = {
+const user = {
   name: "",
   age: 18,
   loc: "jb",
 };
-var username = "xyz";
-var age = 56;
-var loc = "jabalpur";
+const username = "xyz";
+const age = 56;
+const loc = "jabalpur";
 function getLocation(location) {
   if (location) {
     return <p>{location}</p>;
   }
 }
-var templateTwo = (
+const templateTwo = (
   <div>
     <h1>{user.name ? user.name : "Anonymous"}</h1>
     {user.age && user.age >= 18 && <p>Age:{user.age}</p>}
