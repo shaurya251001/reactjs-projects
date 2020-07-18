@@ -10,7 +10,36 @@ class Person {
     return `${this.name} is ${this.age} year(s) old`;
   }
 }
-const me = new Person("Shaurya", 18);
-const me1 = new Person();
-console.log(me.getDescription());
+class Student extends Person {
+  constructor(name, age, major) {
+    super(name, age); //the parent constructor is called
+    this.major = major;
+  }
+  hasMajor() {
+    return !!this.major;
+  }
+  getDescription() {
+    let description = super.getDescription();
+    if (this.hasMajor()) {
+      description += " Their major is " + this.major;
+    }
+    return description;
+  }
+}
+class Traveller extends Person {
+  constructor(name, age, homeloc) {
+    super(name, age);
+    this.homeloc = homeloc;
+  }
+  getGreeting() {
+    let getGreeting = super.getGreeting();
+    if (this.homeloc) {
+      getGreeting += ` Their home location is ${this.homeloc}`;
+    }
+    return getGreeting;
+  }
+}
+const me = new Traveller("Shaurya", 18, "JBL");
+const me1 = new Student();
+console.log(me.getGreeting());
 console.log(me1.getDescription());
