@@ -22,6 +22,12 @@ var handleClick = function handleClick() {
   app.options = [];
   renderOptions();
 };
+var handleDecision = function handleDecision(e) {
+  var decision = Math.floor(Math.random() * app.options.length);
+  if (app.options.length) {
+    alert(app.options[decision]);
+  }
+};
 // const numbers = [55, 100, 200];
 var renderOptions = function renderOptions() {
   var template = React.createElement(
@@ -41,6 +47,14 @@ var renderOptions = function renderOptions() {
       "p",
       null,
       app.options.length > 0 ? "Here are your options" : "No options exist"
+    ),
+    React.createElement(
+      "button",
+      {
+        disabled: app.options.length ? false : true,
+        onClick: handleDecision
+      },
+      "What should i do?"
     ),
     React.createElement(
       "button",
