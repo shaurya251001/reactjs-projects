@@ -22,7 +22,7 @@ var handleClick = function handleClick() {
   app.options = [];
   renderOptions();
 };
-
+// const numbers = [55, 100, 200];
 var renderOptions = function renderOptions() {
   var template = React.createElement(
     "div",
@@ -43,11 +43,6 @@ var renderOptions = function renderOptions() {
       app.options.length > 0 ? "Here are your options" : "No options exist"
     ),
     React.createElement(
-      "p",
-      null,
-      app.options.length
-    ),
-    React.createElement(
       "button",
       { onClick: handleClick },
       "Remove All"
@@ -55,16 +50,13 @@ var renderOptions = function renderOptions() {
     React.createElement(
       "ol",
       null,
-      React.createElement(
-        "li",
-        null,
-        "opt 1"
-      ),
-      React.createElement(
-        "li",
-        null,
-        "opt 2"
-      )
+      app.options.map(function (option) {
+        return React.createElement(
+          "li",
+          { key: option },
+          option
+        );
+      })
     ),
     React.createElement(
       "form",

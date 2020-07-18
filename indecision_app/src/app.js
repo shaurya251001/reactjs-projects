@@ -20,7 +20,7 @@ const handleClick = () => {
   app.options = [];
   renderOptions();
 };
-
+// const numbers = [55, 100, 200];
 const renderOptions = () => {
   const template = (
     <div>
@@ -29,11 +29,15 @@ const renderOptions = () => {
       <p>
         {app.options.length > 0 ? "Here are your options" : "No options exist"}
       </p>
-      <p>{app.options.length}</p>
+      {/* <p>{app.options.length}</p> */}
       <button onClick={handleClick}>Remove All</button>
+      {/* {numbers.map((number) => {
+        return <p key={number}>Number:{number}</p>;
+      })} */}
       <ol>
-        <li>opt 1</li>
-        <li>opt 2</li>
+        {app.options.map((option) => {
+          return <li key={option}>{option}</li>;
+        })}
       </ol>
       <form onSubmit={handleSubmit}>
         <input type="text" name="option" />
