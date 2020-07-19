@@ -80,6 +80,11 @@ var Action = function (_React$Component3) {
   }
 
   _createClass(Action, [{
+    key: "handlePick",
+    value: function handlePick() {
+      alert("Hello");
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -87,7 +92,7 @@ var Action = function (_React$Component3) {
         null,
         React.createElement(
           "button",
-          null,
+          { onClick: this.handlePick },
           "What should I do?"
         )
       );
@@ -130,6 +135,11 @@ var Options = function (_React$Component5) {
   }
 
   _createClass(Options, [{
+    key: "handleRemoveAll",
+    value: function handleRemoveAll() {
+      alert("Hello to remove all button");
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -140,10 +150,19 @@ var Options = function (_React$Component5) {
           null,
           "Options go here!"
         ),
-        this.props.options.length,
-        this.props.options.map(function (element) {
-          return React.createElement(Option, { text: element, key: element });
-        })
+        React.createElement(
+          "button",
+          { onClick: this.handleRemoveAll },
+          "Remove All"
+        ),
+        React.createElement(
+          "div",
+          null,
+          this.props.options.length,
+          this.props.options.map(function (element) {
+            return React.createElement(Option, { text: element, key: element });
+          })
+        )
       );
     }
   }]);
@@ -161,6 +180,15 @@ var AddOption = function (_React$Component6) {
   }
 
   _createClass(AddOption, [{
+    key: "handleAddOption",
+    value: function handleAddOption(e) {
+      e.preventDefault();
+      if (e.target.elements.addoptions.value.trim()) {
+        alert("helllo");
+      }
+      e.target.elements.addoptions.value = "";
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -168,8 +196,8 @@ var AddOption = function (_React$Component6) {
         null,
         React.createElement(
           "form",
-          null,
-          React.createElement("input", { placeholder: "Option" }),
+          { onSubmit: this.handleAddOption },
+          React.createElement("input", { placeholder: "Option", name: "addoptions", type: "text" }),
           React.createElement(
             "button",
             null,
