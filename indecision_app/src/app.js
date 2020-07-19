@@ -1,3 +1,13 @@
+// const obj = {
+//   name: "xyz",
+//   getName() {
+//     return this.name;
+//   },
+// };
+// // const getName = obj.getName; //the context in which this is defined now gets set to the getName (anon. function) func we defined and func has undefined as their this binding so the error;
+// // const getName = obj.getName.bind(obj); //the context is again changed to obj now for this again this.name="xyz";
+// const getName = obj.getName.bind({ name: "Shaurya" }); //bind to whatever obj you want..;
+// console.log(getName());
 class Indecision extends React.Component {
   render() {
     const title = "Indecision App";
@@ -42,8 +52,13 @@ class Option extends React.Component {
   }
 }
 class Options extends React.Component {
+  constructor(props) {
+    super(props); //this.props is now defined
+    this.handleRemoveAll = this.handleRemoveAll.bind(this); //the constructor and render are not event handlers and hence have the correct this binding
+  }
   handleRemoveAll() {
     alert("Hello to remove all button");
+    console.log(this.props.options);
   }
   render() {
     return (

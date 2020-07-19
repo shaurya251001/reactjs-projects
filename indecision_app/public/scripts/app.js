@@ -8,6 +8,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// const obj = {
+//   name: "xyz",
+//   getName() {
+//     return this.name;
+//   },
+// };
+// // const getName = obj.getName; //the context in which this is defined now gets set to the getName (anon. function) func we defined and func has undefined as their this binding so the error;
+// // const getName = obj.getName.bind(obj); //the context is again changed to obj now for this again this.name="xyz";
+// const getName = obj.getName.bind({ name: "Shaurya" }); //bind to whatever obj you want..;
+// console.log(getName());
 var Indecision = function (_React$Component) {
   _inherits(Indecision, _React$Component);
 
@@ -128,16 +138,21 @@ var Option = function (_React$Component4) {
 var Options = function (_React$Component5) {
   _inherits(Options, _React$Component5);
 
-  function Options() {
+  function Options(props) {
     _classCallCheck(this, Options);
 
-    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+    //this.props is now defined
+    var _this5 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
+
+    _this5.handleRemoveAll = _this5.handleRemoveAll.bind(_this5); //the constructor and render are not event handlers and hence have the correct this binding
+    return _this5;
   }
 
   _createClass(Options, [{
     key: "handleRemoveAll",
     value: function handleRemoveAll() {
       alert("Hello to remove all button");
+      console.log(this.props.options);
     }
   }, {
     key: "render",
