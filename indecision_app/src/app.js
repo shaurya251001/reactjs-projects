@@ -1,10 +1,13 @@
 class Indecision extends React.Component {
   render() {
+    const title = "Indecision App";
+    const subtitle = "Put your life in the hands of a computer";
+    const options = ["1.Option", "2.Option", "3.Option"];
     return (
       <div>
-        <Header />
+        <Header title={title} subtitle={subtitle} />
         <Action />
-        <Options />
+        <Options options={options} />
         <AddOption />
       </div>
     );
@@ -15,8 +18,8 @@ class Header extends React.Component {
     //Render is imp for es6 normally the class properties are not mandatory but here the render method is mandatory
     return (
       <div>
-        <h1>Indecision App</h1>
-        <h2>Put your life in the hands of a computer</h2>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subtitle}</h2>
       </div>
     );
   }
@@ -32,7 +35,7 @@ class Action extends React.Component {
 }
 class Option extends React.Component {
   render() {
-    return <div>Option 1</div>;
+    return <div>{this.props.text}</div>;
   }
 }
 class Options extends React.Component {
@@ -40,7 +43,10 @@ class Options extends React.Component {
     return (
       <div>
         <h1>Options go here!</h1>
-        <Option />
+        {this.props.options.length}
+        {this.props.options.map((element) => {
+          return <Option text={element} key={element} />;
+        })}
       </div>
     );
   }
