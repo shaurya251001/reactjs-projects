@@ -60,30 +60,3 @@ const renderOptions = () => {
   ReactDOM.render(template, document.querySelector(".app"));
 };
 renderOptions();
-
-// let count = 0;
-// const addOne = () => {
-//   count++;
-//   renderCounter();
-// };
-// const minusOne = () => {
-//   count--;
-//   renderCounter();
-// };
-// const resetOne = () => {
-//   count = 0;
-//   renderCounter();
-// };
-
-// const renderCounter = () => {
-//   const templateTwo = (
-//     <div>
-//       <h1>Count:{count}</h1>
-//       <button onClick={addOne}>+1</button>
-//       <button onClick={minusOne}>-1</button>
-//       <button onClick={resetOne}>Reset</button>
-//     </div>
-//   );
-//   ReactDOM.render(templateTwo, document.querySelector(".app"));
-// };
-// renderCounter();
