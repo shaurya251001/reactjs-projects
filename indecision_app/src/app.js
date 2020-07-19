@@ -1,3 +1,15 @@
+class Indecision extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <Action />
+        <Options />
+        <AddOption />
+      </div>
+    );
+  }
+}
 class Header extends React.Component {
   render() {
     //Render is imp for es6 normally the class properties are not mandatory but here the render method is mandatory
@@ -18,11 +30,17 @@ class Action extends React.Component {
     );
   }
 }
+class Option extends React.Component {
+  render() {
+    return <div>Option 1</div>;
+  }
+}
 class Options extends React.Component {
   render() {
     return (
       <div>
         <h1>Options go here!</h1>
+        <Option />
       </div>
     );
   }
@@ -40,13 +58,11 @@ class AddOption extends React.Component {
   }
 }
 
-const jsx = (
-  <div>
-    <Header />
-    <Action />
-    <Options />
-    <AddOption />
-    {/* <Header />Uppercase is required here(not optional) */}
-  </div>
-);
-ReactDOM.render(jsx, document.querySelector(".app"));
+// const jsx = (
+//   <div>
+//     <Header />
+
+//     {/* <Header />Uppercase is required here(not optional) */}
+//   </div>
+// );
+ReactDOM.render(<Indecision />, document.querySelector(".app"));
