@@ -19,6 +19,15 @@ class Indecision extends React.Component {
     this.handleAddOption = this.handleAddOption.bind(this);
     this.handleDeleteOption = this.handleDeleteOption.bind(this);
   }
+  componentDidMount() {
+    console.log("fetch data");
+  }
+  componentDidUpdate() {
+    console.log("saving data");
+  }
+  componentWillUnmount() {
+    console.log("component unmounted");
+  }
   //handleDeleteOptions
   handleDeleteOptions() {
     this.setState(() => ({ options: [] }));

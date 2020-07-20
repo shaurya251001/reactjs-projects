@@ -35,10 +35,25 @@ var Indecision = function (_React$Component) {
     _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
     return _this;
   }
-  //handleDeleteOptions
-
 
   _createClass(Indecision, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("fetch data");
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      console.log("saving data");
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log("component unmounted");
+    }
+    //handleDeleteOptions
+
+  }, {
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
       this.setState(function () {
