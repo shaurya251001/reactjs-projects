@@ -28,9 +28,10 @@ var Indecision = function (_React$Component) {
 
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     _this.state = {
-      options: ["1.Option", "2.Option", "3.Option"]
+      options: []
     };
     _this.handlePick = _this.handlePick.bind(_this);
+    _this.handleAddOption = _this.handleAddOption.bind(_this);
     return _this;
   }
   //handleDeleteOptions
@@ -52,6 +53,28 @@ var Indecision = function (_React$Component) {
       alert(this.state.options[x]);
     }
   }, {
+    key: "handleAddOption",
+    value: function handleAddOption(option) {
+      option.preventDefault();
+      var text = option.target.elements.addoptions.value.trim();
+      if (text) {
+        this.setState(function (prevState) {
+          return {
+            options: prevState.options.concat([text])
+          }; //do not change the state value ever, only operations on the state are allowed.
+        });
+        // this.setState((prevState) => {
+        //   return {
+        //     options: prevState.options.push(
+        //       option.target.elements.addoptions.value.trim()
+        //     ),
+        //   };
+        // });
+        console.log(this.state.options);
+      }
+      option.target.elements.addoptions.value = "";
+    }
+  }, {
     key: "render",
     value: function render() {
       var title = "Indecision App";
@@ -68,7 +91,7 @@ var Indecision = function (_React$Component) {
           options: this.state.options,
           handleDeleteOptions: this.handleDeleteOptions
         }),
-        React.createElement(AddOption, null)
+        React.createElement(AddOption, { addoption: this.handleAddOption })
       );
     }
   }]);
@@ -222,23 +245,22 @@ var AddOption = function (_React$Component6) {
   }
 
   _createClass(AddOption, [{
-    key: "handleAddOption",
-    value: function handleAddOption(e) {
-      e.preventDefault();
-      if (e.target.elements.addoptions.value.trim()) {
-        alert("helllo");
-      }
-      e.target.elements.addoptions.value = "";
-    }
-  }, {
     key: "render",
+
+    // handleAddOption(e) {
+    //   e.preventDefault();
+    //   if (e.target.elements.addoptions.value.trim()) {
+    //     alert("helllo");
+    //   }
+    //   e.target.elements.addoptions.value = "";
+    // }
     value: function render() {
       return React.createElement(
         "div",
         null,
         React.createElement(
           "form",
-          { onSubmit: this.handleAddOption },
+          { onSubmit: this.props.addoption },
           React.createElement("input", { placeholder: "Option", name: "addoptions", type: "text" }),
           React.createElement(
             "button",

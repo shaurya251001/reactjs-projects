@@ -13,9 +13,10 @@ class Indecision extends React.Component {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.state = {
-      options: ["1.Option", "2.Option", "3.Option"],
+      options: [],
     };
     this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
   }
   //handleDeleteOptions
   handleDeleteOptions() {
@@ -31,6 +32,26 @@ class Indecision extends React.Component {
     );
     alert(this.state.options[x]);
   }
+  handleAddOption(option) {
+    option.preventDefault();
+    const text = option.target.elements.addoptions.value.trim();
+    if (text) {
+      this.setState((prevState) => {
+        return {
+          options: prevState.options.concat([text]),
+        }; //do not change the state value ever, only operations on the state are allowed.
+      });
+      // this.setState((prevState) => {
+      //   return {
+      //     options: prevState.options.push(
+      //       option.target.elements.addoptions.value.trim()
+      //     ),
+      //   };
+      // });
+      console.log(this.state.options);
+    }
+    option.target.elements.addoptions.value = "";
+  }
   render() {
     const title = "Indecision App";
     const subtitle = "Put your life in the hands of a computer";
@@ -45,7 +66,7 @@ class Indecision extends React.Component {
           options={this.state.options}
           handleDeleteOptions={this.handleDeleteOptions}
         />
-        <AddOption />
+        <AddOption addoption={this.handleAddOption} />
       </div>
     );
   }
@@ -105,17 +126,17 @@ class Options extends React.Component {
   }
 }
 class AddOption extends React.Component {
-  handleAddOption(e) {
-    e.preventDefault();
-    if (e.target.elements.addoptions.value.trim()) {
-      alert("helllo");
-    }
-    e.target.elements.addoptions.value = "";
-  }
+  // handleAddOption(e) {
+  //   e.preventDefault();
+  //   if (e.target.elements.addoptions.value.trim()) {
+  //     alert("helllo");
+  //   }
+  //   e.target.elements.addoptions.value = "";
+  // }
   render() {
     return (
       <div>
-        <form onSubmit={this.handleAddOption}>
+        <form onSubmit={this.props.addoption}>
           <input placeholder="Option" name="addoptions" type="text" />
           <button>Add Option</button>
         </form>
