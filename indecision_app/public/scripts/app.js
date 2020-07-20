@@ -28,7 +28,7 @@ var Indecision = function (_React$Component) {
 
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     _this.state = {
-      options: props.options //props.options is not defined (towards the end of the app in ReactDOM) so it falls back to the default props of options=[],
+      options: [] //props.options is not defined (towards the end of the app in ReactDOM) so it falls back to the default props of options=[],
     };
     _this.handlePick = _this.handlePick.bind(_this);
     _this.handleAddOption = _this.handleAddOption.bind(_this);
@@ -139,10 +139,11 @@ var Indecision = function (_React$Component) {
 
   return Indecision;
 }(React.Component);
+// Indecision.defaultProps = {
+//   options: [],
+// };
 
-Indecision.defaultProps = {
-  options: []
-};
+
 var Header = function Header(props) {
   return React.createElement(
     "div",
