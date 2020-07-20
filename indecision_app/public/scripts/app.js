@@ -32,6 +32,7 @@ var Indecision = function (_React$Component) {
     };
     _this.handlePick = _this.handlePick.bind(_this);
     _this.handleAddOption = _this.handleAddOption.bind(_this);
+    _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
     return _this;
   }
   //handleDeleteOptions
@@ -41,9 +42,7 @@ var Indecision = function (_React$Component) {
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
       this.setState(function () {
-        return {
-          options: []
-        };
+        return { options: [] };
       });
     }
   }, {
@@ -63,8 +62,8 @@ var Indecision = function (_React$Component) {
         this.setState(function (prevState) {
           return {
             options: prevState.options.concat([option])
-          }; //do not change the state value ever, only operations on the state are allowed.
-        });
+          };
+        }); //do not change the state value ever, only operations on the state are allowed.
         // this.setState((prevState) => {
         //   return {
         //     options: prevState.options.push(
@@ -73,6 +72,17 @@ var Indecision = function (_React$Component) {
         //   };
         // });
       }
+    }
+  }, {
+    key: "handleDeleteOption",
+    value: function handleDeleteOption(option) {
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (element) {
+            return element !== option;
+          })
+        };
+      });
     }
   }, {
     key: "render",
@@ -88,7 +98,8 @@ var Indecision = function (_React$Component) {
         }),
         React.createElement(Options, {
           options: this.state.options,
-          handleDeleteOptions: this.handleDeleteOptions
+          handleDeleteOptions: this.handleDeleteOptions,
+          handleDeleteOption: this.handleDeleteOption
         }),
         React.createElement(AddOption, { addoption: this.handleAddOption })
       );
@@ -159,7 +170,16 @@ var Option = function Option(props) {
   return React.createElement(
     "div",
     null,
-    props.text
+    props.text,
+    React.createElement(
+      "button",
+      {
+        onClick: function onClick(e) {
+          props.handleDeleteOption(props.text);
+        }
+      },
+      "Remove"
+    )
   );
 };
 // class Option extends React.Component {
@@ -184,9 +204,12 @@ var Options = function Options(props) {
     React.createElement(
       "div",
       null,
-      props.options.length,
       props.options.map(function (element) {
-        return React.createElement(Option, { text: element, key: element });
+        return React.createElement(Option, {
+          text: element,
+          key: element,
+          handleDeleteOption: props.handleDeleteOption
+        });
       })
     )
   );
