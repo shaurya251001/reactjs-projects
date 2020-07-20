@@ -35,7 +35,11 @@ class Indecision extends React.Component {
   handleAddOption(option) {
     option.preventDefault();
     const text = option.target.elements.addoptions.value.trim();
-    if (text) {
+    if (!text) {
+      alert("Enter a valid item to add");
+    } else if (this.state.options.indexOf(text) > -1) {
+      alert("Option already exists");
+    } else if (text) {
       this.setState((prevState) => {
         return {
           options: prevState.options.concat([text]),
@@ -48,7 +52,6 @@ class Indecision extends React.Component {
       //     ),
       //   };
       // });
-      console.log(this.state.options);
     }
     option.target.elements.addoptions.value = "";
   }

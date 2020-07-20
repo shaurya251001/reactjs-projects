@@ -57,7 +57,11 @@ var Indecision = function (_React$Component) {
     value: function handleAddOption(option) {
       option.preventDefault();
       var text = option.target.elements.addoptions.value.trim();
-      if (text) {
+      if (!text) {
+        alert("Enter a valid item to add");
+      } else if (this.state.options.indexOf(text) > -1) {
+        alert("Option already exists");
+      } else if (text) {
         this.setState(function (prevState) {
           return {
             options: prevState.options.concat([text])
@@ -70,7 +74,6 @@ var Indecision = function (_React$Component) {
         //     ),
         //   };
         // });
-        console.log(this.state.options);
       }
       option.target.elements.addoptions.value = "";
     }
