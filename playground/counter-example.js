@@ -4,20 +4,38 @@ class Counter extends React.Component {
     this.handlePlusOne = this.handlePlusOne.bind(this);
     this.handleMinusOne = this.handleMinusOne.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.state = {
+      count: 0,
+    };
   }
   handlePlusOne() {
-    alert("Plus one clicked");
+    // alert("Plus one clicked");
+    this.setState((prevState) => {
+      return {
+        count: prevState.count + 1,
+      };
+    });
   }
   handleMinusOne() {
-    alert("Minus one clicked");
+    // alert("Minus one clicked");
+    this.setState((prevState) => {
+      return {
+        count: prevState.count - 1,
+      };
+    });
   }
   handleReset() {
-    alert("Reset clicked");
+    // alert("Reset clicked");
+    this.setState(() => {
+      return {
+        count: 0,
+      };
+    });
   }
   render() {
     return (
       <div>
-        <h1>Count:</h1>
+        <h1>Count:{this.state.count}</h1>
         <button onClick={this.handlePlusOne}>+1</button>
         <button onClick={this.handleMinusOne}>-1</button>
         <button onClick={this.handleReset}>reset</button>
