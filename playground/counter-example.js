@@ -5,7 +5,7 @@ class Counter extends React.Component {
     this.handleMinusOne = this.handleMinusOne.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.state = {
-      count: 0,
+      count: props.init_count,
     };
   }
   handlePlusOne() {
@@ -54,6 +54,9 @@ class Counter extends React.Component {
     );
   }
 }
+Counter.defaultProps = {
+  init_count: 0,
+};
 ReactDOM.render(<Counter />, document.querySelector(".app"));
 // let count = 0;
 // const addOne = () => {
