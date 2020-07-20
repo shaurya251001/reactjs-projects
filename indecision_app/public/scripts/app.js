@@ -55,16 +55,14 @@ var Indecision = function (_React$Component) {
   }, {
     key: "handleAddOption",
     value: function handleAddOption(option) {
-      option.preventDefault();
-      var text = option.target.elements.addoptions.value.trim();
-      if (!text) {
-        alert("Enter a valid item to add");
-      } else if (this.state.options.indexOf(text) > -1) {
-        alert("Option already exists");
-      } else if (text) {
+      if (!option) {
+        return "Enter a valid item to add";
+      } else if (this.state.options.indexOf(option) > -1) {
+        return "Option already exists";
+      } else if (option) {
         this.setState(function (prevState) {
           return {
-            options: prevState.options.concat([text])
+            options: prevState.options.concat([option])
           }; //do not change the state value ever, only operations on the state are allowed.
         });
         // this.setState((prevState) => {
@@ -75,7 +73,6 @@ var Indecision = function (_React$Component) {
         //   };
         // });
       }
-      option.target.elements.addoptions.value = "";
     }
   }, {
     key: "render",
@@ -241,29 +238,46 @@ var Options = function (_React$Component5) {
 var AddOption = function (_React$Component6) {
   _inherits(AddOption, _React$Component6);
 
-  function AddOption() {
+  function AddOption(props) {
     _classCallCheck(this, AddOption);
 
-    return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
+    var _this6 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
+
+    _this6.handleAddOption = _this6.handleAddOption.bind(_this6);
+    _this6.state = {
+      error: undefined
+    };
+    return _this6;
   }
 
   _createClass(AddOption, [{
-    key: "render",
+    key: "handleAddOption",
+    value: function handleAddOption(e) {
+      e.preventDefault();
+      var option = e.target.elements.addoptions.value.trim();
 
-    // handleAddOption(e) {
-    //   e.preventDefault();
-    //   if (e.target.elements.addoptions.value.trim()) {
-    //     alert("helllo");
-    //   }
-    //   e.target.elements.addoptions.value = "";
-    // }
+      var error = this.props.addoption(option);
+
+      this.setState(function () {
+        return { error: error };
+      });
+
+      e.target.elements.addoptions.value = "";
+    }
+  }, {
+    key: "render",
     value: function render() {
       return React.createElement(
         "div",
         null,
+        this.state.error && React.createElement(
+          "p",
+          null,
+          this.state.error
+        ),
         React.createElement(
           "form",
-          { onSubmit: this.props.addoption },
+          { onSubmit: this.handleAddOption },
           React.createElement("input", { placeholder: "Option", name: "addoptions", type: "text" }),
           React.createElement(
             "button",

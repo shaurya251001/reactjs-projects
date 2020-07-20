@@ -33,16 +33,14 @@ class Indecision extends React.Component {
     alert(this.state.options[x]);
   }
   handleAddOption(option) {
-    option.preventDefault();
-    const text = option.target.elements.addoptions.value.trim();
-    if (!text) {
-      alert("Enter a valid item to add");
-    } else if (this.state.options.indexOf(text) > -1) {
-      alert("Option already exists");
-    } else if (text) {
+    if (!option) {
+      return "Enter a valid item to add";
+    } else if (this.state.options.indexOf(option) > -1) {
+      return "Option already exists";
+    } else if (option) {
       this.setState((prevState) => {
         return {
-          options: prevState.options.concat([text]),
+          options: prevState.options.concat([option]),
         }; //do not change the state value ever, only operations on the state are allowed.
       });
       // this.setState((prevState) => {
@@ -53,7 +51,6 @@ class Indecision extends React.Component {
       //   };
       // });
     }
-    option.target.elements.addoptions.value = "";
   }
   render() {
     const title = "Indecision App";
@@ -129,17 +126,30 @@ class Options extends React.Component {
   }
 }
 class AddOption extends React.Component {
-  // handleAddOption(e) {
-  //   e.preventDefault();
-  //   if (e.target.elements.addoptions.value.trim()) {
-  //     alert("helllo");
-  //   }
-  //   e.target.elements.addoptions.value = "";
-  // }
+  constructor(props) {
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.state = {
+      error: undefined,
+    };
+  }
+  handleAddOption(e) {
+    e.preventDefault();
+    const option = e.target.elements.addoptions.value.trim();
+
+    const error = this.props.addoption(option);
+
+    this.setState(() => {
+      return { error };
+    });
+
+    e.target.elements.addoptions.value = "";
+  }
   render() {
     return (
       <div>
-        <form onSubmit={this.props.addoption}>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.handleAddOption}>
           <input placeholder="Option" name="addoptions" type="text" />
           <button>Add Option</button>
         </form>
