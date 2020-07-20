@@ -9,15 +9,42 @@
 // const getName = obj.getName.bind({ name: "Shaurya" }); //bind to whatever obj you want..;
 // console.log(getName());
 class Indecision extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    this.state = {
+      options: ["1.Option", "2.Option", "3.Option"],
+    };
+    this.handlePick = this.handlePick.bind(this);
+  }
+  //handleDeleteOptions
+  handleDeleteOptions() {
+    this.setState(() => {
+      return {
+        options: [],
+      };
+    });
+  }
+  handlePick() {
+    const x = Math.floor(
+      Math.random(this.state.options) * this.state.options.length
+    );
+    alert(this.state.options[x]);
+  }
   render() {
     const title = "Indecision App";
     const subtitle = "Put your life in the hands of a computer";
-    const options = ["1.Option", "2.Option", "3.Option"];
     return (
       <div>
         <Header title={title} subtitle={subtitle} />
-        <Action />
-        <Options options={options} />
+        <Action
+          handlePick={this.handlePick}
+          hasOptions={this.state.options.length ? true : false}
+        />
+        <Options
+          options={this.state.options}
+          handleDeleteOptions={this.handleDeleteOptions}
+        />
         <AddOption />
       </div>
     );
@@ -35,13 +62,18 @@ class Header extends React.Component {
   }
 }
 class Action extends React.Component {
-  handlePick() {
-    alert("Hello");
-  }
+  // handlePick() {
+  //   alert("Hello");
+  // }
   render() {
     return (
       <div>
-        <button onClick={this.handlePick}>What should I do?</button>
+        <button
+          onClick={this.props.handlePick}
+          disabled={!this.props.hasOptions}
+        >
+          What should I do?
+        </button>
       </div>
     );
   }
@@ -52,19 +84,16 @@ class Option extends React.Component {
   }
 }
 class Options extends React.Component {
-  constructor(props) {
-    super(props); //this.props is now defined
-    this.handleRemoveAll = this.handleRemoveAll.bind(this); //the constructor and render are not event handlers and hence have the correct this binding
-  }
-  handleRemoveAll() {
-    alert("Hello to remove all button");
-    console.log(this.props.options);
-  }
+  // constructor(props) {
+  //   super(props); //this.props is now defined
+  //   this.handleRemoveAll = this.handleRemoveAll.bind(this); //the constructor and render are not event handlers and hence have the correct this binding
+  // }
+
   render() {
     return (
       <div>
         <h1>Options go here!</h1>
-        <button onClick={this.handleRemoveAll}>Remove All</button>
+        <button onClick={this.props.handleDeleteOptions}>Remove All</button>
         <div>
           {this.props.options.length}
           {this.props.options.map((element) => {
