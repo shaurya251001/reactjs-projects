@@ -4,3 +4,4 @@ export const isAdult = (age) => {
 export const canDrink = (age) => {
   return age >= 21;
 };
+export default (age) => age >= 65;

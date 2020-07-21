@@ -4,7 +4,8 @@ export const square = (x) => {
 export const add = (a, b) => {
   return a + b;
 };
-
-//named exports
-
-// export { square, add };
+// const subtract = (a, b) => a - b;
+// //named exports
+// export default subtract;
+export default (a, b) => a - b;
+// export { square, add, subtract as default };

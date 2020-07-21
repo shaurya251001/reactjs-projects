@@ -71,13 +71,15 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__person__ = __webpack_require__(2);
+ //with default exports you can ref it with any name you want
 
-
-console.log(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* square */](2));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* square */](2));
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* add */](2, 564));
 
-console.log(__WEBPACK_IMPORTED_MODULE_1__person__["b" /* isAdult */](12));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["c" /* isAdult */](12));
 console.log(__WEBPACK_IMPORTED_MODULE_1__person__["a" /* canDrink */](71));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* default */](3252, 9238));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["b" /* default */](66));
 
 
 /***/ }),
@@ -88,17 +90,18 @@ console.log(__WEBPACK_IMPORTED_MODULE_1__person__["a" /* canDrink */](71));
 const square = (x) => {
   return x * x;
 };
-/* harmony export (immutable) */ __webpack_exports__["b"] = square;
+/* harmony export (immutable) */ __webpack_exports__["c"] = square;
 
 const add = (a, b) => {
   return a + b;
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = add;
 
-
-//named exports
-
-// export { square, add };
+// const subtract = (a, b) => a - b;
+// //named exports
+// export default subtract;
+/* harmony default export */ __webpack_exports__["b"] = ((a, b) => a - b);
+// export { square, add, subtract as default };
 
 
 /***/ }),
@@ -109,13 +112,14 @@ const add = (a, b) => {
 const isAdult = (age) => {
   return age >= 18;
 };
-/* harmony export (immutable) */ __webpack_exports__["b"] = isAdult;
+/* harmony export (immutable) */ __webpack_exports__["c"] = isAdult;
 
 const canDrink = (age) => {
   return age >= 21;
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = canDrink;
 
+/* harmony default export */ __webpack_exports__["b"] = ((age) => age >= 65);
 
 
 /***/ })
