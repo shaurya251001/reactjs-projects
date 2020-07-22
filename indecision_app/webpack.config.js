@@ -15,4 +15,5 @@ module.exports = {
       },
     ],
   },
+  devtool: "cheap-module-eval-source-map", //basically gives the references to the corresponding component,if some error occurs,instead of giving ref to the error in bundle.js
 };
