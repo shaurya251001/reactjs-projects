@@ -1,9 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Indecision from "./components/Indecision";
 
-const template = <p>Xyz</p>;
-
-ReactDOM.render(template, document.querySelector(".app"));
-//loader
-
-//babel-core runs babel through webpacks
+ReactDOM.render(<Indecision />, document.querySelector(".app"));
