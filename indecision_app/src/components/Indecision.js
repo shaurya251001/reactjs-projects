@@ -3,10 +3,12 @@ import AddOption from "./AddOption";
 import Header from "./Header";
 import Action from "./Action";
 import Options from "./Options";
+import OptionModal from "./OptionModal";
 
 export default class Indecision extends React.Component {
   state = {
     options: [],
+    selectedOption: undefined,
   };
   // constructor(props) {
   //   super(props);
@@ -27,7 +29,11 @@ export default class Indecision extends React.Component {
     const x = Math.floor(
       Math.random(this.state.options) * this.state.options.length
     );
-    alert(this.state.options[x]);
+    this.setState(() => {
+      return {
+        selectedOption: this.state.options[x],
+      };
+    });
   };
   handleAddOption = (option) => {
     if (!option) {
@@ -53,6 +59,13 @@ export default class Indecision extends React.Component {
         options: prevState.options.filter((element) => {
           return element !== option;
         }),
+      };
+    });
+  };
+  handleClick = () => {
+    this.setState(() => {
+      return {
+        selectedOption: undefined,
       };
     });
   };
@@ -96,6 +109,10 @@ export default class Indecision extends React.Component {
           handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption addoption={this.handleAddOption} />
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          click={this.handleClick}
+        />
       </div>
     );
   }
