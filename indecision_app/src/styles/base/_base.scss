@@ -14,3 +14,11 @@ button {
 button:disabled {
   cursor: default;
 }
+button:focus {
+  outline: none;
+  border: 1px solid $light-blue;
+}
+input:focus {
+  outline: none;
+  border: 1px solid $light-blue;
+}

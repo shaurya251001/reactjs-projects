@@ -17,9 +17,10 @@ const Options = (props) => {
         <p className="widget__message">Please add an option to get started!</p>
       )}
       <div>
-        {props.options.map((element) => {
+        {props.options.map((element, index) => {
           return (
             <Option
+              count={index + 1}
               text={element}
               key={element}
               handleDeleteOption={props.handleDeleteOption}
