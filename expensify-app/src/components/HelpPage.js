@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 
 const HelpPage = () => {
   return <div>from help component</div>;

@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import { BrowserRouter, Route, Switch, Link, NavLink } from "react-router-dom";
 
 const Header = () => {
@@ -6,14 +6,12 @@ const Header = () => {
     <header>
       <h1>Expensify</h1>
       <NavLink to="/" activeClassName="isactive" exact={true}>
-        Home
+        Dashboard
       </NavLink>
       <NavLink to="/create" activeClassName="isactive">
-        Create
+        Create Expense
       </NavLink>
-      <NavLink to="/edit" activeClassName="isactive">
-        Edit
-      </NavLink>
+
       <NavLink to="/help" activeClassName="isactive">
         Help
       </NavLink>
