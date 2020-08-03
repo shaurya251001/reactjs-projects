@@ -139,6 +139,20 @@ const filterReducer = (state = filterReducerDefaultState, action) => {
       return state;
   }
 };
+//Get visible expenses
+const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
+  return expenses.filter((expense) => {
+    const startDateMatch =
+      typeof startDate !== "number" || expense.createdAt >= startDate; //if startDate is undefined means the user hasnt filtered for startDate making that item be included for startdate..
+    const endDateMatch =
+      typeof endDate !== "number" || expense.createdAt <= endDate;
+    const textMatch = expense.description
+      .toLowerCase()
+      .includes(text.toLowerCase());
+    return startDateMatch && endDateMatch && textMatch;
+  });
+};
+
 const store = createStore(
   combineReducers({
     expenses: expensesReducer,
@@ -146,27 +160,29 @@ const store = createStore(
   })
 );
 store.subscribe(() => {
-  console.log(store.getState());
+  const state = store.getState();
+  const visibleExpenses = getVisibleExpenses(state.expenses, state.filter);
+  console.log(visibleExpenses);
 });
 
-// const expenseOne = store.dispatch(
-//   addExpense({ description: "tuition", amount: 400 })
-// );
-// const expenseTwo = store.dispatch(
-//   addExpense({ description: "why", amount: 800 })
-// );
+const expenseOne = store.dispatch(
+  addExpense({ description: "tuitiony", amount: 400, createdAt: 1000 })
+);
+const expenseTwo = store.dispatch(
+  addExpense({ description: "why", amount: 800, createdAt: -1000 })
+);
 
 // store.dispatch(removeExpense({ id: expenseOne.expense.id }));
 
 // store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));
-// store.dispatch(setTextFilter("rent"));
+store.dispatch(setTextFilter("y"));
 // store.dispatch(setTextFilter());
 // store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
-store.dispatch(setEndDate(123));
+// store.dispatch(setEndDate(123));
 
-store.dispatch(setStartDate(120));
-store.dispatch(setStartDate());
+// store.dispatch(setStartDate(120));
+// store.dispatch(setStartDate());
 
 const demoState = {
   expenses: [
