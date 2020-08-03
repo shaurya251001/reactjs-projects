@@ -25,7 +25,10 @@ const resetCount = () => {
     type: "RESET",
   };
 };
-const store = createStore((state = { count: 0 }, action) => {
+
+//Reducer
+
+const countReducer = (state = { count: 0 }, action) => {
   switch (action.type) {
     case "INCREMENT":
       return {
@@ -46,8 +49,11 @@ const store = createStore((state = { count: 0 }, action) => {
     default:
       return state;
   }
-});
+}; //A Reducer function
+//Reducers are pure func-pure func outputs of a pure func are determined only by its inputs does not require anything outside its scope
+//                      -does not change action and state..
 
+const store = createStore(countReducer);
 // console.log(store.getState()); //gets the current state
 //Action-object that gets sent to the store
 const unsubscribe = store.subscribe(() => {
