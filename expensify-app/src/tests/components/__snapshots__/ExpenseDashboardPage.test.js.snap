@@ -2,7 +2,7 @@
 
 exports[`should render the ExpenseDashboardPage component correctly 1`] = `
 <div>
-  <Connect(ExpensesListFilter) />
+  <Connect(ExpenseListFilters) />
   <Connect(ExpenseList) />
 </div>
 `;
