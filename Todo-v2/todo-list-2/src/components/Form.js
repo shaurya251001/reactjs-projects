@@ -2,7 +2,6 @@ import React from "react";
 
 export default function Form({ setInputText, setTodos, todos, inputText }) {
   const inputTextHandler = (e) => {
-    console.log(e.target.value);
     setInputText(e.target.value);
   };
   const submitTodoHandler = (e) => {
