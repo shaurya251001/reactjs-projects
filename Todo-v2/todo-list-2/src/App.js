@@ -44,7 +44,7 @@ function App() {
         setCurrents={setCurrents}
         filter={filter}
       />
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList todos={todos} setTodos={setTodos} currentTodos={currentTodos} />
     </div>
   );
 }
